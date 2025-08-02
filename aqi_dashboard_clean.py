@@ -8,6 +8,14 @@ import joblib
 
 # Page title
 st.title("Rawalpindi AQI 3-Day Forecast Dashboard")
+st.sidebar.markdown("## 🧭 How to Use This Dashboard")
+st.sidebar.markdown("""
+- Forecasts AQI for the next 72 hours in Rawalpindi  
+- Adjust the AQI hazard threshold with the slider  
+- Download the forecast table using the button  
+- Alerts will appear below the chart if air quality is hazardous
+""")
+
 st.write("This dashboard generates and displays predicted AQI for the next 3 days using a trained Ridge Regression model.")
 
 # Load trained model and processed features
@@ -85,8 +93,18 @@ st.pyplot(fig)
 st.subheader("Forecast Data")
 st.dataframe(forecast_df)
 
+st.download_button(
+    label="📥 Download Forecast as CSV",
+    data=forecast_df.to_csv(index=False),
+    file_name="forecast.csv",
+    mime="text/csv"
+)
+
 # AQI alert if threshold exceeded
-hazardous = forecast_df['predicted_aqi'] > 4
+#hazardous = forecast_df['predicted_aqi'] > 4
+threshold = st.slider("Select AQI Hazard Threshold", min_value=1.0, max_value=5.0, value=4.0, step=0.1)
+hazardous = forecast_df['predicted_aqi'] > threshold
+
 if hazardous.any():
     st.error("Warning: Hazardous AQI predicted in next 3 days!")
 else:
