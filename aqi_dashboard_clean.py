@@ -109,3 +109,16 @@ if hazardous.any():
     st.error("Warning: Hazardous AQI predicted in next 3 days!")
 else:
     st.success("No hazardous AQI predicted in next 3 days.")
+
+import shap
+
+st.subheader("🔍 Feature Contributions (SHAP Explanation)")
+
+# Explain last prediction
+explainer = shap.Explainer(ridge, df[feature_cols])
+shap_values = explainer(df[feature_cols].iloc[[-1]])  # Last row prediction
+
+# Plot using Streamlit-compatible matplotlib
+fig, ax = plt.subplots()
+shap.plots.bar(shap_values, max_display=10, show=False)
+st.pyplot(fig)
