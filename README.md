@@ -1,4 +1,10 @@
 # Rawalpindi AQI Prediction System
+## 🌐 Live Demo
+
+🚀 **Check out the live dashboard here:**  
+🔗 [Rawalpindi AQI Forecast (Streamlit App)](https://itsas3-rawalpinidi-aqi-predictor-aqi-dashboard-clean-7k2ygl.streamlit.app/)
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://itsas3-rawalpinidi-aqi-predictor-aqi-dashboard-clean-7k2ygl.streamlit.app/)
 
 ## Overview
 
